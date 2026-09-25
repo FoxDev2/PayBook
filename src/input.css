@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Tailwind CSS v4 directive; ignored by generic CSS linters. */
+/* stylelint-disable-next-line at-rule-no-unknown */
+@theme {
+  --color-primary: #0B5256;
+  --color-primary-dark: #073C3F;
+  --color-primary-light: #E8F3F4;
+
+  --color-accent: #49BDE0;
+  --color-accent-dark: #2AA5C9;
+  --color-accent-light: #EAF8FC;
+
+  --color-background: #FFFFFF;
+  --color-surface: #EDF2F5;
+
+  --color-text: #202020;
+  --color-text-muted: #666666;
+
+  --color-border: #E5E5E5;
+}
