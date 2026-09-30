@@ -3,19 +3,51 @@
 /* Tailwind CSS v4 directive; ignored by generic CSS linters. */
 /* stylelint-disable-next-line at-rule-no-unknown */
 @theme {
-  --color-primary: #0B5256;
-  --color-primary-dark: #073C3F;
-  --color-primary-light: #E8F3F4;
+  --color-primary: #0b5256;
+  --color-primary-dark: #073c3f;
+  --color-primary-light: #e8f3f4;
 
-  --color-accent: #49BDE0;
-  --color-accent-dark: #2AA5C9;
-  --color-accent-light: #EAF8FC;
+  --color-accent: #49bde0;
+  --color-accent-dark: #2aa5c9;
+  --color-accent-light: #eaf8fc;
 
-  --color-background: #FFFFFF;
-  --color-surface: #EDF2F5;
+  --color-background: #ffffff;
+  --color-surface: #edf2f5;
 
   --color-text: #202020;
   --color-text-muted: #666666;
 
-  --color-border: #E5E5E5;
+  --color-border: #e5e5e5;
+
+  --spacing: 1px;
 }
+
+.nav-btn-bar {
+  height: 3px;
+  width: 100%;
+  border-radius: 3px;
+  background-color: var(--color-primary);
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger span {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  /* Animation de l'icône Hamburger */
+  .nav-toggle:checked ~ .hamburger span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav-toggle:checked ~ .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle:checked ~ .hamburger span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+.cta-discover {
+  
+}
+
+

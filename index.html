@@ -1,17 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>PayBook Home</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./src/output.css">
-    </head>
-    <body>
-      <h1 class="text-primary text-2xl">Bienvenue</h1>
-        
-        
-        <script src="" async defer></script>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>PayBook Home</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./src/output.css" />
+  </head>
+  <body class="text-[18px]">
+    <header
+      class="h-screen bg-[url(../assets/pictures/header1.jpg)] bg-black/60 bg-blend-overlay bg-cover bg-top-left"
+    >
+      <div
+        class="top-nav fixed top-0 w-screen bg-white py-15 px-20 md:py-20 md:px-60 flex flex-row justify-between items-center"
+      >
+        <div class="logo text-[28px] md:text[27px] text-primary-dark font-bold">
+          PayB<span class="text-accent">oo</span>k
+        </div>
+
+        <input
+          type="checkbox"
+          name="nav-toggle"
+          id="nav-toggle"
+          class="nav-toggle hidden"
+        />
+
+        <label
+          for="nav-toggle"
+          class="hamburger flex flex-col justify-between p-1 md:hidden w-30 h-21"
+        >
+          <span class="nav-btn-bar"></span>
+          <span class="nav-btn-bar"></span>
+          <span class="nav-btn-bar"></span>
+        </label>
+
+        <nav
+          class="md:flex flex-row justify-center items-center gap-25 font-semibold text-primary hidden"
+        >
+          <a class="hover:text-accent-dark" href="">Accueil</a>
+          <a class="hover:text-accent-dark" href="">A propos</a>
+          <a class="hover:text-accent-dark" href="">Bibiothèque</a>
+        </nav>
+      </div>
+      <section
+        class="flex flex-col justify-between items-baseline pt-90 w-[70vw] m-auto text-white h-[46vh] md:h-[70vh]"
+      >
+        <h1 class="text-[2.5rem] md:text-[3.5rem]">PayBook</h1>
+        <p class="text-[1.3rem] md:text-[1.6rem]">
+          Vos documents scolaires <br />
+          Moins chers et <br />
+          Accessibles ici.
+        </p>
+        <a
+          class="cta-discover items-center block px-10 py-8 rounded-[25px] bg-accent font-semibold text-[1.4rem] hover:bg-accent-dark"
+          href=""
+          >Découvrir</a
+        >
+      </section>
+    </header>
+    <main></main>
+    <script src="" async defer></script>
+  </body>
 </html>
