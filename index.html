@@ -116,6 +116,24 @@
         <circle cx="19" cy="21" r="1" />
         <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
       </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+        <circle cx="12" cy="12" r="3" />
+      </symbol>
+      <symbol id="i-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m15 18-6-6 6-6" />
+      </symbol>
+      <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m9 18 6-6-6-6" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </symbol>
     </svg>
 
     <a class="skip-link" href="#contenu">Aller au contenu principal</a>
@@ -260,8 +278,8 @@
             </div>
             <ul class="hero-meta">
               <li>7 niveaux</li>
-              <li>6 matières par classe</li>
-              <li>Dès 300 F l'unité</li>
+              <li>Packs par classe et par série</li>
+              <li>Dès 550 F le document</li>
             </ul>
           </div>
         </div>
@@ -285,7 +303,7 @@
               </span>
               <div>
                 <strong>Toutes les matières</strong>
-                <span>6 collections par classe</span>
+                <span>Une collection par matière</span>
               </div>
             </div>
             <div class="feature-item">
@@ -330,7 +348,7 @@
                 <span class="check">
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"></use></svg>
                 </span>
-                Des prix clairs, dès 300 F l'unité
+                Des prix clairs, dès 550 F le document
               </li>
               <li>
                 <span class="check">
@@ -358,8 +376,8 @@
             </figure>
             <div class="about-badge">
               <span class="about-badge-label">À partir de</span>
-              <strong>300 F</strong>
-              <span class="about-badge-sub">l'unité</span>
+              <strong>550 F</strong>
+              <span class="about-badge-sub">le document</span>
             </div>
           </div>
         </div>
@@ -370,16 +388,16 @@
           <div class="library-head">
             <div class="library-head-copy">
               <span class="section-eyebrow">La bibliothèque</span>
-              <h2 class="section-title">Six packs par classe, pour avancer toute l'année.</h2>
+              <h2 class="section-title">Des packs par matière, au rythme des arrivages.</h2>
               <p class="section-lead">
                 Choisissez votre classe, puis votre série au lycée. Chaque pack
-                réunit des exercices, des méthodes et des corrigés pour une
-                matière.
+                réunit les documents disponibles pour une matière, avec un
+                aperçu photo avant l'achat.
               </p>
             </div>
             <div class="library-status">
               <div class="library-count">
-                <strong id="pack-count">6</strong>
+                <strong id="pack-count">1</strong>
                 <span>packs affichés</span>
               </div>
               <p class="library-summary" id="library-summary">6ᵉ · Collège</p>
@@ -417,11 +435,13 @@
                 </button>
                 <button class="series-chip" type="button" data-series-chip="D" aria-pressed="false">
                   D <small>Sciences exp.</small>
-                </button>
+                </button>  
               </div>
               <p class="class-note" id="class-note">Packs communs à la classe de 6ᵉ.</p>
             </div>
           </div>
+
+          <div class="availability-note" id="availability-note" aria-live="polite" hidden></div>
 
           <div class="pack-grid" id="pack-grid"></div>
           <noscript>
@@ -433,7 +453,7 @@
               <strong>Besoin d'un conseil ?</strong>
               <span>L'achat en ligne arrive bientôt. Écrivez-nous pour réserver votre pack.</span>
             </div>
-            <a class="btn btn-primary btn-small" href="mailto:contact@paybook.tg">
+            <a class="btn btn-primary btn-small" href="mailto:examrevision2025@gmail.com">
               Nous contacter
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail"></use></svg>
             </a>
@@ -511,9 +531,9 @@
               </button>
             </form>
             <div class="footer-contact">
-              <a href="mailto:contact@paybook.tg">
+              <a href="mailto:examrevision2025@gmail.com">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail"></use></svg>
-                contact@paybook.tg
+                examrevision2025@gmail.com
               </a>
               <span>
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"></use></svg>
@@ -535,11 +555,61 @@
       <div class="footer-watermark" aria-hidden="true">PayBook</div>
     </footer>
 
+    <dialog class="preview-dialog" id="preview-dialog" aria-labelledby="preview-title" aria-describedby="preview-meta">
+      <div class="preview-panel">
+        <header class="preview-head">
+          <div class="preview-head-copy">
+            <span class="preview-eyebrow">Aperçu du pack</span>
+            <h2 id="preview-title"></h2>
+            <p id="preview-meta"></p>
+          </div>
+          <button class="preview-close" type="button" data-preview-close aria-label="Fermer l'aperçu">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"></use></svg>
+          </button>
+        </header>
+
+        <div class="preview-stage">
+          <button class="preview-arrow preview-arrow-prev" type="button" data-preview-prev aria-label="Document précédent">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron-left"></use></svg>
+          </button>
+
+          <figure class="preview-figure">
+            <img id="preview-image" alt="" decoding="async" />
+            <div class="preview-fallback" id="preview-fallback" hidden>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"></use></svg>
+              <span>Impossible d'afficher ce document.</span>
+            </div>
+            <figcaption class="preview-caption">
+              <strong id="preview-doc-title"></strong>
+              <span id="preview-doc-meta"></span>
+            </figcaption>
+          </figure>
+
+          <button class="preview-arrow preview-arrow-next" type="button" data-preview-next aria-label="Document suivant">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          </button>
+        </div>
+
+        <div class="preview-thumbs-wrap">
+          <div class="preview-thumbs" id="preview-thumbs" role="group" aria-label="Documents du pack"></div>
+        </div>
+
+        <footer class="preview-foot">
+          <span class="preview-counter" id="preview-counter">1 / 1</span>
+          <p class="preview-price">
+            <span>Prix du pack</span>
+            <strong id="preview-price"></strong>
+          </p>
+        </footer>
+      </div>
+    </dialog>
+
     <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"></use></svg>
       <span id="toast-message"></span>
     </div>
 
+    <script src="./src/docs-manifest.js" defer></script>
     <script src="./src/data.js" defer></script>
     <script src="./src/main.js" defer></script>
   </body>

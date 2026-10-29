@@ -57,7 +57,29 @@
       tone: "pine",
       description:
         "Notions, auteurs et sujets corrigés pour structurer une pensée claire."
+    },
+    annales: {
+      name: "Annales",
+      icon: "layers",
+      tone: "sand",
+      description:
+        "Recueils multi-matières, sujets corrigés et entraînements pour les examens."
+    },
+    autres: {
+      name: "Autres documents",
+      icon: "book-open",
+      tone: "mist",
+      description:
+        "Documents complémentaires et supports variés pour accompagner la classe."
     }
+  };
+
+  var EPREUVES = {
+    name: "Épreuves & annales",
+    icon: "layers",
+    tone: "sand",
+    description:
+      "Des sujets d'examen récents et leurs corrigés, réunis en un pack de 10 pour s'entraîner en conditions réelles."
   };
 
   var CLASSES = [
@@ -67,7 +89,7 @@
       short: "6ᵉ",
       cycle: "college",
       cycleLabel: "Collège",
-      price: 300,
+      price: 550,
       focus: null
     },
     {
@@ -76,7 +98,7 @@
       short: "5ᵉ",
       cycle: "college",
       cycleLabel: "Collège",
-      price: 300,
+      price: 550,
       focus: null
     },
     {
@@ -85,7 +107,7 @@
       short: "4ᵉ",
       cycle: "college",
       cycleLabel: "Collège",
-      price: 300,
+      price: 550,
       focus: null
     },
     {
@@ -94,7 +116,7 @@
       short: "3ᵉ",
       cycle: "college",
       cycleLabel: "Collège",
-      price: 300,
+      price: 550,
       focus: "Prépa BEPC"
     },
     {
@@ -103,7 +125,7 @@
       short: "2nde",
       cycle: "lycee",
       cycleLabel: "Lycée",
-      price: 350,
+      price: 850,
       focus: null
     },
     {
@@ -112,7 +134,7 @@
       short: "1ère",
       cycle: "lycee",
       cycleLabel: "Lycée",
-      price: 400,
+      price: 850,
       focus: null
     },
     {
@@ -121,7 +143,7 @@
       short: "Tle",
       cycle: "lycee",
       cycleLabel: "Lycée",
-      price: 450,
+      price: 850,
       focus: "Prépa BAC"
     }
   ];
@@ -132,38 +154,32 @@
     { id: "D", label: "D", hint: "Sciences exp." }
   ];
 
-  var COLLEGE_SUBJECTS = ["maths", "francais", "anglais", "pc", "svt", "hg"];
-
-  var SUBJECT_SETS = {
-    "6e": COLLEGE_SUBJECTS,
-    "5e": COLLEGE_SUBJECTS,
-    "4e": COLLEGE_SUBJECTS,
-    "3e": COLLEGE_SUBJECTS,
-    "2nde": [
-      { subject: "maths", series: ["C", "D"] },
-      { subject: "pc", series: ["C", "D"] },
-      { subject: "svt", series: ["C", "D"] },
-      { subject: "francais", series: ["A4", "C", "D"] },
-      { subject: "anglais", series: ["A4", "C", "D"] },
-      { subject: "hg", series: ["A4", "C", "D"] }
-    ],
-    "1ere": [
-      { subject: "maths", series: ["C", "D"] },
-      { subject: "pc", series: ["C", "D"] },
-      { subject: "svt", series: ["C", "D"] },
-      { subject: "francais", series: ["A4", "C", "D"] },
-      { subject: "litterature", series: ["A4"] },
-      { subject: "hg", series: ["A4", "C", "D"] }
-    ],
-    "tle": [
-      { subject: "maths", series: ["C", "D"] },
-      { subject: "pc", series: ["C", "D"] },
-      { subject: "svt", series: ["C", "D"] },
-      { subject: "philosophie", series: ["A4", "C", "D"] },
-      { subject: "francais", series: ["A4"] },
-      { subject: "hg", series: ["A4"] }
-    ]
+  var EXPECTED_SUBJECTS = {
+    "6e": ["maths", "francais", "anglais", "pc", "svt", "hg"],
+    "5e": ["maths", "francais", "anglais", "pc", "svt", "hg"],
+    "4e": ["maths", "francais", "anglais", "pc", "svt", "hg"],
+    "3e": ["maths", "francais", "anglais", "pc", "svt", "hg"],
+    "2nde": ["maths", "pc", "svt", "francais", "anglais", "hg"],
+    "1ere": ["maths", "pc", "svt", "francais", "anglais", "litterature", "hg"],
+    "tle": ["maths", "pc", "svt", "philosophie", "francais", "hg"]
   };
+
+  var SUBJECT_ORDER = [
+    "maths",
+    "pc",
+    "svt",
+    "francais",
+    "anglais",
+    "hg",
+    "litterature",
+    "philosophie",
+    "annales",
+    "autres"
+  ];
+
+  var EPREUVES_PRICE = 500;
+  var COLLECTIONS = {};
+  var AVAILABILITY = {};
 
   function focusSentence(classId) {
     if (classId === "3e") return " Une préparation ciblée pour le BEPC.";
@@ -171,35 +187,153 @@
     return "";
   }
 
-  function buildCollections(cls) {
-    return SUBJECT_SETS[cls.id].map(function (entry, index) {
-      var normalized =
-        typeof entry === "string" ? { subject: entry, series: [] } : entry;
-      var subject = SUBJECTS[normalized.subject];
+  function getManifest() {
+    return window.PAYBOOK_DOCS && window.PAYBOOK_DOCS.classes
+      ? window.PAYBOOK_DOCS
+      : { classes: {} };
+  }
 
-      return {
-        id: cls.id + "-" + normalized.subject,
-        subject: subject.name,
-        icon: subject.icon,
-        tone: subject.tone,
-        description: subject.description + focusSentence(cls.id),
-        series: normalized.series,
-        price: cls.price,
-        focus: cls.focus,
-        title: "Pack " + subject.name + " " + cls.label,
-        position: index + 1
-      };
+  function groupDocuments(docs) {
+    var groups = {};
+    docs.forEach(function (doc) {
+      if (!groups[doc.subject]) groups[doc.subject] = [];
+      groups[doc.subject].push(doc);
+    });
+    return groups;
+  }
+
+  function sortSeries(series) {
+    return series.slice().sort(function (a, b) {
+      return SERIES.findIndex(function (item) {
+        return item.id === a;
+      }) - SERIES.findIndex(function (item) {
+        return item.id === b;
+      });
     });
   }
 
-  var COLLECTIONS = {};
-  CLASSES.forEach(function (cls) {
-    COLLECTIONS[cls.id] = buildCollections(cls);
-  });
+  function seriesUnion(docs) {
+    var series = [];
+    docs.forEach(function (doc) {
+      doc.series.forEach(function (id) {
+        if (series.indexOf(id) === -1) series.push(id);
+      });
+    });
+    return sortSeries(series);
+  }
 
-  window.PAYBOOK = {
-    CLASSES: CLASSES,
-    SERIES: SERIES,
-    COLLECTIONS: COLLECTIONS
-  };
+  function makeCollection(cls, subjectId, docs, kind) {
+    var isEpreuve = kind === "epreuve";
+    var meta = isEpreuve ? EPREUVES : SUBJECTS[subjectId] || SUBJECTS.autres;
+    var series = seriesUnion(docs);
+
+    return {
+      id: cls.id + "-" + (isEpreuve ? "epreuves" : subjectId),
+      kind: kind,
+      subjectId: isEpreuve ? "epreuves" : subjectId,
+      subject: meta.name,
+      icon: meta.icon,
+      tone: meta.tone,
+      description: meta.description + (isEpreuve ? "" : focusSentence(cls.id)),
+      series: series,
+      hasCommonSeries: docs.some(function (doc) {
+        return !doc.series.length;
+      }),
+      docs: docs,
+      price: isEpreuve ? EPREUVES_PRICE : cls.price,
+      priceUnit: isEpreuve ? "le pack de 10" : "le document",
+      focus: cls.focus,
+      title: isEpreuve
+        ? "Pack Épreuves " + cls.label
+        : "Pack " + meta.name + " " + cls.label,
+      previewLabel: isEpreuve ? "sujets" : "documents"
+    };
+  }
+
+  function subjectRank(subjectId) {
+    var index = SUBJECT_ORDER.indexOf(subjectId);
+    return index === -1 ? 99 : index;
+  }
+
+  function buildCollections(cls) {
+    var manifest = getManifest();
+    var bucket = manifest.classes[cls.id] || { documents: [], epreuves: [] };
+    var documents = bucket.documents || [];
+    var epreuves = bucket.epreuves || [];
+    var groups = groupDocuments(documents);
+    var collections = [];
+
+    Object.keys(groups).forEach(function (subjectId) {
+      collections.push(makeCollection(cls, subjectId, groups[subjectId], "document"));
+    });
+
+    collections.sort(function (a, b) {
+      return subjectRank(a.subjectId) - subjectRank(b.subjectId);
+    });
+
+    if (epreuves.length) {
+      collections.push(makeCollection(cls, "epreuves", epreuves, "epreuve"));
+    }
+
+    return collections;
+  }
+
+  function buildAvailability(cls, collections) {
+    var available = collections
+      .filter(function (item) {
+        return item.kind === "document";
+      })
+      .map(function (item) {
+        return item.subjectId;
+      });
+    var expected = EXPECTED_SUBJECTS[cls.id] || [];
+    var missing = expected.filter(function (subjectId) {
+      return available.indexOf(subjectId) === -1;
+    });
+    var hasEpreuves = collections.some(function (item) {
+      return item.kind === "epreuve";
+    });
+    var missingEpreuves = cls.cycle === "lycee" && !hasEpreuves;
+
+    return {
+      total: collections.length,
+      missingSubjects: missing,
+      missingEpreuves: missingEpreuves,
+      isEmpty: collections.length === 0,
+      isComplete: missing.length === 0 && !missingEpreuves
+    };
+  }
+
+  function rebuild() {
+    Object.keys(COLLECTIONS).forEach(function (id) {
+      delete COLLECTIONS[id];
+    });
+    Object.keys(AVAILABILITY).forEach(function (id) {
+      delete AVAILABILITY[id];
+    });
+
+    CLASSES.forEach(function (cls) {
+      var collections = buildCollections(cls);
+      COLLECTIONS[cls.id] = collections;
+      AVAILABILITY[cls.id] = buildAvailability(cls, collections);
+    });
+
+    document.dispatchEvent(
+      new CustomEvent("paybook:data", {
+        detail: { collections: COLLECTIONS, availability: AVAILABILITY }
+      })
+    );
+  }
+
+  var api = window.PAYBOOK || {};
+  api.CLASSES = CLASSES;
+  api.SERIES = SERIES;
+  api.SUBJECTS = SUBJECTS;
+  api.EXPECTED_SUBJECTS = EXPECTED_SUBJECTS;
+  api.COLLECTIONS = COLLECTIONS;
+  api.AVAILABILITY = AVAILABILITY;
+  api.rebuild = rebuild;
+  window.PAYBOOK = api;
+
+  rebuild();
 })();
