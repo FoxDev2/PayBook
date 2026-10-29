@@ -3,7 +3,7 @@
     "dev": "node scripts/dev.mjs",
     "docs": "node scripts/build-docs.mjs",
     "docs:watch": "node scripts/watch-docs.mjs",
-    "build": "node scripts/build-docs.mjs && tailwindcss -i ./src/input.css -o ./src/output.css --minify"
+    "build": "node scripts/build-docs.mjs && tailwindcss -i ./src/input.css -o ./src/output.css --minify && node scripts/build-site.mjs"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",
