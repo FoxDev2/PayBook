@@ -1,65 +1,546 @@
 <!doctype html>
-<html>
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>PayBook Home</title>
-    <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#0b5256" />
+    <meta
+      name="description"
+      content="PayBook, la librairie de documents scolaires pour le collège et le lycée au Togo. Des packs par matière, par classe et par série, à prix accessible."
+    />
+    <title>PayBook — Librairie scolaire du collège et du lycée au Togo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <link rel="stylesheet" href="./src/output.css" />
   </head>
-  <body class="text-[18px]">
-    <header
-      class="h-screen bg-[url(../assets/pictures/header1.jpg)] bg-black/60 bg-blend-overlay bg-cover bg-top-left"
-    >
-      <div
-        class="top-nav fixed top-0 w-screen bg-white py-15 px-20 md:py-20 md:px-60 flex flex-row justify-between items-center"
-      >
-        <div class="logo text-[28px] md:text[27px] text-primary-dark font-bold">
-          PayB<span class="text-accent">oo</span>k
+
+  <body>
+    <svg class="svg-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="i-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 7v14" />
+        <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+      </symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </symbol>
+      <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5" />
+        <path d="m5 12 7-7 7 7" />
+      </symbol>
+      <symbol id="i-graduation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+        <path d="M22 10v6" />
+        <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+      </symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0l8.57-3.91a1 1 0 0 0 0-1.83Z" />
+        <path d="m22 12.08-8.57 3.91a2 2 0 0 1-1.66 0L3.2 12.08" />
+        <path d="m22 17.08-8.57 3.91a2 2 0 0 1-1.66 0L3.2 17.08" />
+      </symbol>
+      <symbol id="i-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 3H2l8 9.46V19l4 2v-8.54z" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6 9 17l-5-5" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="20" height="16" x="2" y="4" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+        <circle cx="12" cy="10" r="3" />
+      </symbol>
+      <symbol id="i-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      </symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="20" height="20" x="2" y="2" rx="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+      </symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+        <path d="M9 9.5a.5.5 0 0 1 .5-.5h1l1 2-1 1a7 7 0 0 0 3 3l1-1 2 1v1a.5.5 0 0 1-.5.5A8.5 8.5 0 0 1 9 9.5z" />
+      </symbol>
+      <symbol id="i-calculator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="16" height="20" x="4" y="2" rx="2" />
+        <line x1="8" x2="16" y1="6" y2="6" />
+        <line x1="16" x2="16" y1="14" y2="18" />
+        <path d="M16 10h.01" />
+        <path d="M12 10h.01" />
+        <path d="M8 10h.01" />
+        <path d="M12 14h.01" />
+        <path d="M8 14h.01" />
+        <path d="M12 18h.01" />
+        <path d="M8 18h.01" />
+      </symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+        <path d="M2 12h20" />
+      </symbol>
+      <symbol id="i-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2" />
+        <path d="M6.453 15h11.094" />
+        <path d="M8.5 2h7" />
+      </symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+      </symbol>
+      <symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" />
+        <path d="M15 5.764v15" />
+        <path d="M9 3.236v15" />
+      </symbol>
+      <symbol id="i-feather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z" />
+        <path d="M16 8 2 22" />
+        <path d="M17.5 15H9" />
+      </symbol>
+      <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z" />
+        <path d="M5 3v4" />
+        <path d="M19 17v4" />
+        <path d="M3 5h4" />
+        <path d="M17 19h4" />
+      </symbol>
+      <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="8" cy="21" r="1" />
+        <circle cx="19" cy="21" r="1" />
+        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+      </symbol>
+    </svg>
+
+    <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+    <header class="site-header">
+      <div class="header-inner shell">
+        <a class="brand" href="#accueil" aria-label="PayBook, accueil">
+          <span class="brand-mark">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book-open"></use></svg>
+          </span>
+          <span class="brand-name">PayB<span class="brand-accent">oo</span>k</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Navigation principale">
+          <a class="nav-link is-active" href="#accueil" aria-current="page">Accueil</a>
+          <a class="nav-link" href="#bibliotheque">Bibliothèque</a>
+          <a class="nav-link" href="#apropos">À propos</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-primary btn-small header-cta" href="#bibliotheque">
+            Voir les packs
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </a>
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Ouvrir le menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="class-rail" aria-label="Accès rapide par classe et par série">
+        <div class="class-rail-inner shell">
+          <div class="rail-group">
+            <span class="rail-label">Collège</span>
+            <a class="rail-link" href="#bibliotheque" data-class-link="6e">6ᵉ</a>
+            <a class="rail-link" href="#bibliotheque" data-class-link="5e">5ᵉ</a>
+            <a class="rail-link" href="#bibliotheque" data-class-link="4e">4ᵉ</a>
+            <a class="rail-link" href="#bibliotheque" data-class-link="3e">3ᵉ</a>
+          </div>
+
+          <span class="rail-sep" aria-hidden="true"></span>
+
+          <div class="rail-group">
+            <span class="rail-label">Lycée</span>
+            <a class="rail-link" href="#bibliotheque" data-class-link="2nde">2nde</a>
+            <a class="rail-link" href="#bibliotheque" data-class-link="1ere">1ère</a>
+            <a class="rail-link" href="#bibliotheque" data-class-link="tle">Tle</a>
+          </div>
+
+          <span class="rail-sep" aria-hidden="true"></span>
+
+          <div class="rail-group">
+            <span class="rail-label">Séries</span>
+            <a class="rail-link rail-series-link" href="#bibliotheque" data-series-link="A4" title="Filtrer le lycée par série A4">A4</a>
+            <a class="rail-link rail-series-link" href="#bibliotheque" data-series-link="C" title="Filtrer le lycée par série C">C</a>
+            <a class="rail-link rail-series-link" href="#bibliotheque" data-series-link="D" title="Filtrer le lycée par série D">D</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+        <div class="mobile-menu-content shell">
+          <nav class="mobile-primary" aria-label="Navigation mobile">
+            <a href="#accueil">Accueil</a>
+            <a href="#bibliotheque">Bibliothèque</a>
+            <a href="#apropos">À propos</a>
+          </nav>
+
+          <div class="mobile-group">
+            <p class="mobile-group-label">Collège</p>
+            <div class="mobile-chips">
+              <a class="mobile-chip" href="#bibliotheque" data-class-link="6e">6ᵉ</a>
+              <a class="mobile-chip" href="#bibliotheque" data-class-link="5e">5ᵉ</a>
+              <a class="mobile-chip" href="#bibliotheque" data-class-link="4e">4ᵉ</a>
+              <a class="mobile-chip" href="#bibliotheque" data-class-link="3e">3ᵉ</a>
+            </div>
+          </div>
+
+          <div class="mobile-group">
+            <p class="mobile-group-label">Lycée</p>
+            <div class="mobile-chips">
+              <a class="mobile-chip" href="#bibliotheque" data-class-link="2nde">2nde</a>
+              <a class="mobile-chip" href="#bibliotheque" data-class-link="1ere">1ère</a>
+              <a class="mobile-chip" href="#bibliotheque" data-class-link="tle">Tle</a>
+            </div>
+          </div>
+
+          <div class="mobile-group">
+            <p class="mobile-group-label">Séries · Lycée</p>
+            <div class="mobile-chips">
+              <a class="mobile-chip mobile-chip-series" href="#bibliotheque" data-series-link="A4">A4</a>
+              <a class="mobile-chip mobile-chip-series" href="#bibliotheque" data-series-link="C">C</a>
+              <a class="mobile-chip mobile-chip-series" href="#bibliotheque" data-series-link="D">D</a>
+            </div>
+          </div>
+
+          <a class="btn btn-primary mobile-cta" href="#bibliotheque">
+            Explorer la bibliothèque
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <section class="hero" id="accueil">
+        <div class="hero-media" aria-hidden="true">
+          <img
+            src="./assets/pictures/header2.jpg"
+            alt=""
+            width="1472"
+            height="832"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
         </div>
 
-        <input
-          type="checkbox"
-          name="nav-toggle"
-          id="nav-toggle"
-          class="nav-toggle hidden"
-        />
-
-        <label
-          for="nav-toggle"
-          class="hamburger flex flex-col justify-between p-1 md:hidden w-30 h-21"
-        >
-          <span class="nav-btn-bar"></span>
-          <span class="nav-btn-bar"></span>
-          <span class="nav-btn-bar"></span>
-        </label>
-
-        <nav
-          class="md:flex flex-row justify-center items-center gap-25 font-semibold text-primary hidden"
-        >
-          <a class="hover:text-accent-dark" href="">Accueil</a>
-          <a class="hover:text-accent-dark" href="">A propos</a>
-          <a class="hover:text-accent-dark" href="">Bibiothèque</a>
-        </nav>
-      </div>
-      <section
-        class="flex flex-col justify-between items-baseline pt-90 w-[70vw] m-auto text-white h-[46vh] md:h-[70vh]"
-      >
-        <h1 class="text-[2.5rem] md:text-[3.5rem]">PayBook</h1>
-        <p class="text-[1.3rem] md:text-[1.6rem]">
-          Vos documents scolaires <br />
-          Moins chers et <br />
-          Accessibles ici.
-        </p>
-        <a
-          class="cta-discover items-center block px-10 py-8 rounded-[25px] bg-accent font-semibold text-[1.4rem] hover:bg-accent-dark"
-          href=""
-          >Découvrir</a
-        >
+        <div class="hero-inner shell">
+          <div class="hero-content">
+            <span class="hero-eyebrow"><span class="dot"></span> Librairie scolaire · Togo</span>
+            <h1>Réussir commence par les <span class="text-accent">bons documents</span>.</h1>
+            <p class="hero-lead">
+              Des packs d'exercices et de révisions pour le collège et le lycée,
+              classés par classe et par série. Des supports complets, à prix
+              accessible, pensés pour les élèves du Togo.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-accent" href="#bibliotheque">
+                Explorer la bibliothèque
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+              </a>
+              <a class="btn btn-ghost" href="#apropos">Notre mission</a>
+            </div>
+            <ul class="hero-meta">
+              <li>7 niveaux</li>
+              <li>6 matières par classe</li>
+              <li>Dès 300 F l'unité</li>
+            </ul>
+          </div>
+        </div>
       </section>
-    </header>
-    <main></main>
-    <script src="" async defer></script>
+
+      <div class="feature-wrap">
+        <div class="shell">
+          <div class="feature-strip">
+            <div class="feature-item">
+              <span class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-graduation"></use></svg>
+              </span>
+              <div>
+                <strong>Toutes les classes</strong>
+                <span>De la 6ᵉ à la Terminale</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-layers"></use></svg>
+              </span>
+              <div>
+                <strong>Toutes les matières</strong>
+                <span>6 collections par classe</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-filter"></use></svg>
+              </span>
+              <div>
+                <strong>Classés par série</strong>
+                <span>A4 · C · D pour le lycée</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="section-block about" id="apropos">
+        <div class="shell about-grid">
+          <div class="about-copy">
+            <span class="section-eyebrow">Notre mission</span>
+            <h2 class="section-title">
+              Des documents scolaires accessibles, pour chaque élève du Togo.
+            </h2>
+            <p class="section-lead">
+              PayBook est une librairie en ligne togolaise dédiée aux élèves du
+              collège et du lycée. Nous rassemblons des packs de documents —
+              fiches, exercices et corrigés — pour compléter les cours et
+              préparer les examens, sans alourdir le budget des familles.
+            </p>
+            <p>
+              Chaque collection est organisée par classe et par matière. Au
+              lycée, un filtre par série vous permet de retrouver rapidement les
+              supports adaptés à votre parcours.
+            </p>
+            <ul class="check-list">
+              <li>
+                <span class="check">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"></use></svg>
+                </span>
+                Des packs complets, prêts à l'emploi
+              </li>
+              <li>
+                <span class="check">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"></use></svg>
+                </span>
+                Des prix clairs, dès 300 F l'unité
+              </li>
+              <li>
+                <span class="check">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"></use></svg>
+                </span>
+                Une navigation pensée pour les élèves
+              </li>
+            </ul>
+            <a class="text-link" href="#bibliotheque">
+              Voir les collections
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+          </div>
+
+          <div class="about-visual">
+            <figure class="about-figure">
+              <img
+                src="./assets/pictures/header1.jpg"
+                alt="Salle de classe avec des bureaux en bois et un tableau"
+                width="739"
+                height="415"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="about-badge">
+              <span class="about-badge-label">À partir de</span>
+              <strong>300 F</strong>
+              <span class="about-badge-sub">l'unité</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block library-section" id="bibliotheque">
+        <div class="shell">
+          <div class="library-head">
+            <div class="library-head-copy">
+              <span class="section-eyebrow">La bibliothèque</span>
+              <h2 class="section-title">Six packs par classe, pour avancer toute l'année.</h2>
+              <p class="section-lead">
+                Choisissez votre classe, puis votre série au lycée. Chaque pack
+                réunit des exercices, des méthodes et des corrigés pour une
+                matière.
+              </p>
+            </div>
+            <div class="library-status">
+              <div class="library-count">
+                <strong id="pack-count">6</strong>
+                <span>packs affichés</span>
+              </div>
+              <p class="library-summary" id="library-summary">6ᵉ · Collège</p>
+            </div>
+          </div>
+
+          <div class="library-controls">
+            <div class="class-tabs" role="group" aria-label="Choisir une classe">
+              <span class="tabs-label">Collège</span>
+              <button class="class-tab is-active" type="button" data-class-tab="6e" aria-pressed="true">6ᵉ</button>
+              <button class="class-tab" type="button" data-class-tab="5e" aria-pressed="false">5ᵉ</button>
+              <button class="class-tab" type="button" data-class-tab="4e" aria-pressed="false">4ᵉ</button>
+              <button class="class-tab" type="button" data-class-tab="3e" aria-pressed="false">3ᵉ</button>
+              <span class="tabs-sep" aria-hidden="true"></span>
+              <span class="tabs-label">Lycée</span>
+              <button class="class-tab" type="button" data-class-tab="2nde" aria-pressed="false">2nde</button>
+              <button class="class-tab" type="button" data-class-tab="1ere" aria-pressed="false">1ère</button>
+              <button class="class-tab" type="button" data-class-tab="tle" aria-pressed="false">Terminale</button>
+            </div>
+
+            <div class="filter-row">
+              <div class="series-filter" id="series-filter" role="group" aria-label="Filtrer par série" hidden>
+                <span class="series-label">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-filter"></use></svg>
+                  Série
+                </span>
+                <button class="series-chip is-active" type="button" data-series-chip="all" aria-pressed="true">
+                  Toutes
+                </button>
+                <button class="series-chip" type="button" data-series-chip="A4" aria-pressed="false">
+                  A4 <small>Littéraire</small>
+                </button>
+                <button class="series-chip" type="button" data-series-chip="C" aria-pressed="false">
+                  C <small>Sciences</small>
+                </button>
+                <button class="series-chip" type="button" data-series-chip="D" aria-pressed="false">
+                  D <small>Sciences exp.</small>
+                </button>
+              </div>
+              <p class="class-note" id="class-note">Packs communs à la classe de 6ᵉ.</p>
+            </div>
+          </div>
+
+          <div class="pack-grid" id="pack-grid"></div>
+          <noscript>
+            <p class="no-script">Activez JavaScript pour afficher les packs de la bibliothèque.</p>
+          </noscript>
+
+          <div class="library-help">
+            <div class="library-help-copy">
+              <strong>Besoin d'un conseil ?</strong>
+              <span>L'achat en ligne arrive bientôt. Écrivez-nous pour réserver votre pack.</span>
+            </div>
+            <a class="btn btn-primary btn-small" href="mailto:contact@paybook.tg">
+              Nous contacter
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail"></use></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner shell">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="#accueil" aria-label="PayBook, accueil">
+              <span class="brand-mark">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book-open"></use></svg>
+              </span>
+              <span class="brand-name">PayB<span class="brand-accent">oo</span>k</span>
+            </a>
+            <p>
+              La librairie de documents scolaires des élèves du collège et du
+              lycée au Togo. Apprendre mieux, avec des supports accessibles.
+            </p>
+            <div class="footer-socials">
+              <button class="footer-social" type="button" data-social="Facebook" aria-label="PayBook sur Facebook" title="Bientôt disponible">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-facebook"></use></svg>
+              </button>
+              <button class="footer-social" type="button" data-social="Instagram" aria-label="PayBook sur Instagram" title="Bientôt disponible">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-instagram"></use></svg>
+              </button>
+              <button class="footer-social" type="button" data-social="WhatsApp" aria-label="PayBook sur WhatsApp" title="Bientôt disponible">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Collège</h3>
+            <ul>
+              <li><a href="#bibliotheque" data-class-link="6e">6ᵉ</a></li>
+              <li><a href="#bibliotheque" data-class-link="5e">5ᵉ</a></li>
+              <li><a href="#bibliotheque" data-class-link="4e">4ᵉ</a></li>
+              <li><a href="#bibliotheque" data-class-link="3e">3ᵉ</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Lycée</h3>
+            <ul>
+              <li><a href="#bibliotheque" data-class-link="2nde">2nde</a></li>
+              <li><a href="#bibliotheque" data-class-link="1ere">1ère</a></li>
+              <li><a href="#bibliotheque" data-class-link="tle">Terminale</a></li>
+            </ul>
+            <div class="footer-series-row" role="group" aria-label="Séries du lycée">
+              <a class="footer-series-chip" href="#bibliotheque" data-series-link="A4">A4</a>
+              <a class="footer-series-chip" href="#bibliotheque" data-series-link="C">C</a>
+              <a class="footer-series-chip" href="#bibliotheque" data-series-link="D">D</a>
+            </div>
+          </div>
+
+          <div class="footer-col footer-newsletter">
+            <h3>Restons en contact</h3>
+            <p>Recevez les nouveaux packs et les conseils de révision.</p>
+            <form class="newsletter-form" id="newsletter-form">
+              <label class="sr-only" for="newsletter-email">Votre adresse e-mail</label>
+              <input
+                id="newsletter-email"
+                name="email"
+                type="email"
+                placeholder="votre@email.com"
+                autocomplete="email"
+                required
+              />
+              <button type="submit" aria-label="S'abonner à la newsletter">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+              </button>
+            </form>
+            <div class="footer-contact">
+              <a href="mailto:contact@paybook.tg">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail"></use></svg>
+                contact@paybook.tg
+              </a>
+              <span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"></use></svg>
+                Lomé, Togo
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© <span id="year">2026</span> PayBook. Tous droits réservés.</p>
+          <p>Conçu à Lomé, pour les élèves du Togo.</p>
+          <a href="#accueil">
+            Haut de page
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-up"></use></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-watermark" aria-hidden="true">PayBook</div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"></use></svg>
+      <span id="toast-message"></span>
+    </div>
+
+    <script src="./src/data.js" defer></script>
+    <script src="./src/main.js" defer></script>
   </body>
 </html>
